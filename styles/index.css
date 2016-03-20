@@ -1,0 +1,161 @@
+body
+{
+    background: white;
+    font:14px "Segoe UI";
+    color: #404040;
+    line-height: 20px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.page{
+
+}
+
+.matrix-menu
+{
+    display: inline-block;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 335px;
+    height: 100%;
+}
+/*
+.matrix-menu--active
+{
+    background: #5199db;
+}
+.matrix-menu--error
+{
+    background: #f6c1c0;
+}
+*/
+.matrix-menu--passive
+{
+    background: #bcbcbc;
+}
+
+.matrix-menu__block
+{
+    padding: 30px 30px 40px 30px;
+}
+
+.matrix-menu__btn
+{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background: linear-gradient(to bottom, #fefefe, #ececec);
+    font:14px "Segoe UI";
+    line-height: 20px;
+}
+
+.matrix-menu__btn--result
+{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: #f2f2f2;
+    background: linear-gradient(to bottom, #4ba91d, #38920c);
+    padding: 10px 20px;
+    border-radius: 2px;
+    color: white;
+    font:14px "Segoe UI";
+    line-height: 20px;
+}
+
+.matrix-menu__title
+{
+    display: inline-block;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.matrix-menu__btn:hover
+{
+    background: #dfdfdf;
+    background: linear-gradient(to bottom, #f2f2f2, #dfdfdf);
+}
+
+.matrix-menu__btn--result:hover
+{
+    background: #317f0b;
+    background: linear-gradient(to bottom, #3b8d13, #317f0b);
+}
+
+.matrix-menu__btn:active
+{
+    background: #d9d9d9;
+    border: 1px solid black;
+}
+
+.matrix-menu__btn--result:active
+{
+    background: #30760d;
+    border: 1px solid black;
+}
+
+.matrix-menu__btn:focus,
+.matrix-menu__btn--result:focus
+{
+    border:1px solid #5199db;
+}
+
+
+.matrix-list
+{
+    position:absolute;
+    display: inline-block;
+    left: 365px;
+    font-size: 0;
+}
+.matrix-conteiner
+{
+    display: inline-block;
+    padding: 15px 30px 15px 0;
+    border: 1px solid black;
+    line-height: 1;
+}
+
+.matrix-conteiner--C
+{
+}
+
+.matrix-conteiner--A
+{
+
+}
+
+.matrix-conteiner--B
+{
+
+}
+
+.matrix-item__num
+{
+    line-height: 40px;
+    width:40px;
+    margin: 5px;
+}
+
+.matrix
+{
+    display: inline-block;
+    border: 1px solid black;
+    font-size: 0px;
+    vertical-align: middle;
+}
+
+.matrix-title
+{
+    display: inline-block;
+    border: 1px solid black;
+    font-size: 20px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
