@@ -158,6 +158,23 @@ MatrixViewModel.prototype.multMatrix = function(A, B) {
     return matrix;
 };
 
+MatrixViewModel.prototype.cleanMatrix = function() {
+    var len_j = this.getRows().length;
+    var row = this.element.querySelector('.row');
+    var inputs = row.querySelectorAll('input');
+    var len_i = inputs.length;
+    for (var j = 0; j < len_j; j++) {
+        for (var i = 0; i < len_i; i++) {
+            var className = '.' + 'el_' + j + '_' + i;
+            var row = this.element.querySelector('.row_' + j);
+            var item = row.querySelector(className);
+            if (item.value !== '') {
+                item.value = '';
+            }
+        }
+    }
+}
+
 window.MatrixViewModel = MatrixViewModel;
 
 })();
