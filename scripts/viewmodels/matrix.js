@@ -3,35 +3,42 @@
 
 var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
 var COL_TEMPLATE = '<input class="${cls}" value="${val}">';
-var ROW_CLASS_TEMPLATE = 'row_';
+var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
-var DEAFULT_MATRIX = [[0,0,1], [0,2,0], [0,0,0], [0,0,0]];
+var DEAFULT_MATRIX = [[null,null,null], [null,null,null], [null,null,null]];
 
 function MatrixViewModel(matrixElement) {
     this.element = matrixElement;
 };
-var element = document.querySelector('.matrix--A');
+
+MatrixViewModel.prototype.getRows = function() {
+    return this.element.querySelectorAll('.row');
+};
 
 MatrixViewModel.prototype.fill = function(matrix) {
     if (!matrix) {
         matrix = DEAFULT_MATRIX;
     }
-    var colLen = matrixExample[0].length;
-    var rowLen = matrixExample.length;
+    var colLen = matrix[0].length;
+    var rowLen = matrix.length;
     var rowsList = [];
     for (var j = 0; j < rowLen; j++){
         var columns = [];
         for (var i = 0; i < colLen; i++){
             var eli = COL_TEMPLATE.replace(
-                '${}' ,
-                COL_CLASS_TEMPLATE + ' ' + 'el_' + j + '_' + i
+                '${cls}' ,
+                'matrix-item__num el_' + j + '_' + i
             );
-            var el = eli.replace('${val}' , matrixExample[j][i]);
+            var value = matrix[j][i];
+            if (value === null) {
+                value = '';
+            }
+            var el = eli.replace('${val}', value);
             columns[i] = el;
         }
         var colString = columns.join('\n');
         var rowi = ROW_TEMPLATE.replace(
-            '${rcls}', ROW_CLASS_TEMPLATE + j
+            '${rcls}', 'row row_' + j
         );
         var row = rowi.replace('${data}', colString);
         rowsList[j] = row;
@@ -41,13 +48,14 @@ MatrixViewModel.prototype.fill = function(matrix) {
 };
 
 MatrixViewModel.prototype.addCol = function() {
-    var len_j = element.children.length;
+    var len_j = this.getRows().length;
     for (var j = 0; j < len_j; j++){
-        var row = element.querySelector('.' + ROW_CLASS_TEMPLATE + j);
-        var len_i = row.children.length;
+        var row = this.element.querySelector('.row_' + j);
+        var inputs = row.querySelectorAll('input');
+        var len_i = inputs.length;
         var eli = COL_TEMPLATE.replace(
             '${cls}' ,
-            COL_CLASS_TEMPLATE + ' ' + 'el_' + j + '_' + len_i
+            'matrix-item__num el_' + j + '_' + len_i
         );
         var el = eli.replace('${val}' , ' ');
         row.insertAdjacentHTML('beforeend', el);
@@ -55,49 +63,66 @@ MatrixViewModel.prototype.addCol = function() {
 };
 
 MatrixViewModel.prototype.addRow = function() {
-    var len_j = element.children.length;
+    var len_j = this.getRows().length;
     var columns = [];
-    var row = element.querySelector('.row_0');
-    var len_i = row.children.length;
+    var row = this.element.querySelector('.row_0');
+    var inputs = row.querySelectorAll('input');
+    var len_i = inputs.length;
     for (var i = 0; i < len_i; i++){
         var eli = COL_TEMPLATE.replace(
              '${cls}' ,
-             COL_CLASS_TEMPLATE + ' ' + 'el_' + len_j + '_' + i
+             'matrix-item__num el_' + len_j + '_' + i
          );
         var el = eli.replace('${val}' , ' ');
         columns[i] = el;
     }
     var colString = columns.join('\n');
     var rowi = ROW_TEMPLATE.replace(
-        '${rcls}', ROW_CLASS_TEMPLATE + len_j
+        '${rcls}', 'row row_' + len_j
     );
     var row = rowi.replace('${data}', colString);
 
-    element.insertAdjacentHTML('beforeend', row);
+    this.element.insertAdjacentHTML('beforeend', row);
 };
 
 MatrixViewModel.prototype.delCol = function(){
-    var len_j = element.children.length;
-    if (len_j !== 0){
+    var len_j = this.getRows().length;
+    var row = this.element.querySelector('.row');
+    var inputs = row.querySelectorAll('input');
+    var len_i = inputs.length;
+    if (len_i - 1 !== 0){
         for (var j = 0; j < len_j; j++){
-            var row = element.querySelector('.' + ROW_CLASS_TEMPLATE + j);
+            var row = this.element.querySelector('.row_' + j);
             var inputs = row.querySelectorAll('input');
             var len_i = inputs.length - 1;
             var className = '.' + 'el_' + j + '_' + len_i;
-            console.log(className);
             row.querySelector(className).remove();
         }
     }
 };
 
 MatrixViewModel.prototype.delRow = function(){
-    var len_j = element.children.length;
-    if (len_j !== 0){
-        element.querySelector(
-            '.' + ROW_CLASS_TEMPLATE + (len_j - 1)
+    var len_j = this.getRows().length;
+    if (len_j - 1 !== 0){
+        this.element.querySelector(
+            '.row_' + (len_j - 1)
         ).remove();
     }
 };
 
+// MatrixViewModel.prototype.read = function(){
+//
+//     for (var i = 0; i < len_i; i++) {
+//         var mxA[i] = [];
+//         for (var j = 0; j < len_j; j++) {
+//             var item = document.getElementById(['rcol', i, j].join('_'));
+//             if (item !== null) {
+//                 mxA[i][j] = parseInt(item.value);
+//             }
+//         }
+//     }
+// }
+
+window.MatrixViewModel = MatrixViewModel;
 
 })();
