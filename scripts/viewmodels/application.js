@@ -12,7 +12,7 @@ function AppViewModel() {
 AppViewModel.prototype.init = function() {
     var elementA = document.querySelector('.matrix--A');
     this.matrixA = new MatrixViewModel(elementA);
-    this.matrixA.fill();
+    this.matrixA.fill([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
     var elementB = document.querySelector('.matrix--B');
     this.matrixB = new MatrixViewModel(elementB);
@@ -34,6 +34,13 @@ AppViewModel.prototype.changeCurrentActiveMatrix = function(matrixName) {
 AppViewModel.prototype.changeCurrentActiveMatrixHandler = function(radio) {
     this.currentActiveMatrix = this[radio.value];
 };
+
+AppViewModel.prototype.btnMultMatrixHandler = function() {
+    this.matrixA.read();
+    this.matrixB.read();
+    multMatrix();
+    this.matrixC.fill(matrix);
+}
 
 window.AppViewModel = AppViewModel;
 
