@@ -16,7 +16,7 @@ AppViewModel.prototype.init = function() {
 
     var elementB = document.querySelector('.matrix--B');
     this.matrixB = new MatrixViewModel(elementB);
-    this.matrixB.fill();
+    this.matrixB.fill([[1, 1, 5], [4, 1, 6], [1, 8, 9]]);
 
     var elementC = document.querySelector('.matrix--C');
     this.matrixC = new MatrixViewModel(elementC);
@@ -40,6 +40,12 @@ AppViewModel.prototype.btnMultMatrixHandler = function() {
     this.matrixB.read();
     multMatrix();
     this.matrixC.fill(matrix);
+};
+
+AppViewModel.prototype.btnClearMatrix = function() {
+    this.matrixA.cleanMatrix();
+    this.matrixB.cleanMatrix();
+    this.matrixC.cleanMatrix();
 }
 
 window.AppViewModel = AppViewModel;
