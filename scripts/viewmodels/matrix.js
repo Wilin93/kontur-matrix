@@ -110,27 +110,53 @@ MatrixViewModel.prototype.delRow = function(){
     }
 };
 
-MatrixViewModel.prototype.read = function(){
-    var mxA = [];
+MatrixViewModel.prototype.read = function() {
+    var mx = [];
     var len_j = this.getRows().length;
     var row = this.element.querySelector('.row');
     var inputs = row.querySelectorAll('input');
     var len_i = inputs.length;
     for (var j = 0; j < len_j; j++) {
-        mxA[ j ] = [];
+        mx[ j ] = [];
         for (var i = 0; i < len_i; i++) {
             var className = '.' + 'el_' + j + '_' + i;
             var row = this.element.querySelector('.row_' + j);
             var item = row.querySelector(className);
-            console.log(item);
-            if (item !== null) {
-                mxA[j][i] = parseInt(item.value);
+            if (item.value !== '') {
+                mx[j][i] = parseInt(item.value);
             }
         }
     }
-    console.table(mxA);
+    console.table(mx);
+    return mx;
 
-}
+};
+
+MatrixViewModel.prototype.multMatrix = function(A, B) {
+    var matrix = [];
+    if (A.length === 0) {
+        alert ('Заполните матрицу A');
+    };
+    if (B.length === 0) {
+        alert ('Заполните матрицу B');
+    };
+    if (A[0].length !== B.length) {
+        alert ('количество столбцов А должно быть равно кол-ву строк В');
+    };
+    for (var i = 0; i < A.length; i++) {
+        matrix[i] = [];
+    };
+    for (var k = 0; k < B[0].length; k++) {
+        for (var i = 0; i < A.length; i++) {
+            var t = 0;
+            for (var j = 0; j < B.length; j++) {
+                t = t + A[i][j] * B[j][k];
+                matrix[i][k] = t;
+            }
+        }
+    };
+    return matrix;
+};
 
 window.MatrixViewModel = MatrixViewModel;
 
