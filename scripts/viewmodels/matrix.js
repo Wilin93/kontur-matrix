@@ -110,18 +110,27 @@ MatrixViewModel.prototype.delRow = function(){
     }
 };
 
-// MatrixViewModel.prototype.read = function(){
-//
-//     for (var i = 0; i < len_i; i++) {
-//         var mxA[i] = [];
-//         for (var j = 0; j < len_j; j++) {
-//             var item = document.getElementById(['rcol', i, j].join('_'));
-//             if (item !== null) {
-//                 mxA[i][j] = parseInt(item.value);
-//             }
-//         }
-//     }
-// }
+MatrixViewModel.prototype.read = function(){
+    var mxA = [];
+    var len_j = this.getRows().length;
+    var row = this.element.querySelector('.row');
+    var inputs = row.querySelectorAll('input');
+    var len_i = inputs.length;
+    for (var j = 0; j < len_j; j++) {
+        mxA[ j ] = [];
+        for (var i = 0; i < len_i; i++) {
+            var className = '.' + 'el_' + j + '_' + i;
+            var row = this.element.querySelector('.row_' + j);
+            var item = row.querySelector(className);
+            console.log(item);
+            if (item !== null) {
+                mxA[j][i] = parseInt(item.value);
+            }
+        }
+    }
+    console.table(mxA);
+
+}
 
 window.MatrixViewModel = MatrixViewModel;
 
