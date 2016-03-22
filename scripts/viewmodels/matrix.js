@@ -127,21 +127,23 @@ MatrixViewModel.prototype.read = function() {
             }
         }
     }
-    console.table(mx);
+
     return mx;
 
 };
 
 MatrixViewModel.prototype.multMatrix = function(A, B) {
+    var bg = document.querySelector('.matrix-menu');
     var matrix = [];
     if (A.length === 0) {
-        alert ('Заполните матрицу A');
+        window.alert ('Заполните матрицу A');
     };
     if (B.length === 0) {
-        alert ('Заполните матрицу B');
+        window.alert ('Заполните матрицу B');
     };
     if (A[0].length !== B.length) {
-        alert ('количество столбцов А должно быть равно кол-ву строк В');
+        bg.background = '#f6c1c0';
+        window.alert ('количество столбцов А должно быть равно кол-ву строк В');
     };
     for (var i = 0; i < A.length; i++) {
         matrix[i] = [];

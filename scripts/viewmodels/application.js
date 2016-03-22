@@ -1,5 +1,5 @@
 (function() {
-'use strict';
+    'use strict';
 
 function AppViewModel() {
     this.matrixA = null;
@@ -7,6 +7,8 @@ function AppViewModel() {
     this.matrixC = null;
 
     this.currentActiveMatrix = null;
+
+
 }
 
 AppViewModel.prototype.init = function() {
@@ -34,11 +36,14 @@ AppViewModel.prototype.changeCurrentActiveMatrix = function(matrixName) {
 AppViewModel.prototype.changeCurrentActiveMatrixHandler = function(radio) {
     this.currentActiveMatrix = this[radio.value];
 };
-
 AppViewModel.prototype.btnMultMatrixHandler = function() {
     this.matrixA.read();
+    var a = this.matrixA.read();
+    console.log (a);
     this.matrixB.read();
-    multMatrix();
+    var b = this.matrixB.read();
+    console.log (b);
+    mtrx.multMatrix(a,b);
     this.matrixC.fill(matrix);
 };
 
