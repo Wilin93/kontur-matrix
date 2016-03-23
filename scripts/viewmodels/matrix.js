@@ -5,7 +5,7 @@ var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
 var COL_TEMPLATE = '<input class="${cls}" value="${val}">';
 var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
-var DEAFULT_MATRIX = [[null,null,null], [null,null,null], [null,null,null]];
+var DEAFULT_MATRIX = [['','',''], ['','',''], ['','','']];
 
 function MatrixViewModel(matrixElement) {
     this.element = matrixElement;
@@ -57,7 +57,7 @@ MatrixViewModel.prototype.addCol = function() {
             '${cls}' ,
             'matrix-item__num el_' + j + '_' + len_i
         );
-        var el = eli.replace('${val}' , ' ');
+        var el = eli.replace('${val}' , '');
         row.insertAdjacentHTML('beforeend', el);
     }
 };
@@ -73,7 +73,7 @@ MatrixViewModel.prototype.addRow = function() {
              '${cls}' ,
              'matrix-item__num el_' + len_j + '_' + i
          );
-        var el = eli.replace('${val}' , ' ');
+        var el = eli.replace('${val}' , '');
         columns[i] = el;
     }
     var colString = columns.join('\n');
@@ -125,6 +125,10 @@ MatrixViewModel.prototype.read = function() {
             if (item.value !== '') {
                 mx[j][i] = parseInt(item.value);
             }
+            else {
+                item.value = 0;
+                mx[j][i] = parseInt(item.value);
+            }
         }
     }
 
@@ -134,15 +138,15 @@ MatrixViewModel.prototype.read = function() {
 
 MatrixViewModel.multMatrix = function(A, B) {
     var matrix = [];
-    if (A.length === null) {
-        window.alert ('Заполните матрицу A');
-    };
-    if (B.length === null) {
-        window.alert ('Заполните матрицу B');
-    };
-    if (A[0].length !== B.length) {
-        //window.alert ('количество столбцов А должно быть равно кол-ву строк В');
+    var lenb = blck_B.querySelectorAll('.row');
+    var row = blck_A.querySelector('.row');
+    var lena = row.querySelectorAll('input');
+    var inp_a = blck_A.querySelectorAll('input');
+
+    if (lena.length !== lenb.length) {
+        window.alert ('количество столбцов А должно быть равно кол-ву строк В');
         return false;
+        d.backgroundColor = 'f6c1c0';
     };
     for (var i = 0; i < A.length; i++) {
         matrix[i] = [];
@@ -151,6 +155,7 @@ MatrixViewModel.multMatrix = function(A, B) {
         for (var i = 0; i < A.length; i++) {
             var t = 0;
             for (var j = 0; j < B.length; j++) {
+
                 t = t + A[i][j] * B[j][k];
                 matrix[i][k] = t;
             }
