@@ -189,8 +189,8 @@ MatrixViewModel.change_Matrix = function() {
     var d2=document.getElementById("blck_mat_B");
     var d11=d1.cloneNode(true);
     var d22=d2.cloneNode(true);
-    d2.parentNode.appendChild(d22);
-    d1.parentNode.appendChild(d11);
+    d2.parentNode.insertBefore(d11,d2);
+    d1.parentNode.insertBefore(d22,d1);
     d1.parentNode.removeChild(d1);
     d2.parentNode.removeChild(d2);
 };
