@@ -132,18 +132,17 @@ MatrixViewModel.prototype.read = function() {
 
 };
 
-MatrixViewModel.prototype.multMatrix = function(A, B) {
-    var bg = document.querySelector('.matrix-menu');
+MatrixViewModel.multMatrix = function(A, B) {
     var matrix = [];
-    if (A.length === 0) {
+    if (A.length === null) {
         window.alert ('Заполните матрицу A');
     };
-    if (B.length === 0) {
+    if (B.length === null) {
         window.alert ('Заполните матрицу B');
     };
     if (A[0].length !== B.length) {
-        bg.background = '#f6c1c0';
-        window.alert ('количество столбцов А должно быть равно кол-ву строк В');
+        //window.alert ('количество столбцов А должно быть равно кол-ву строк В');
+        return false;
     };
     for (var i = 0; i < A.length; i++) {
         matrix[i] = [];
