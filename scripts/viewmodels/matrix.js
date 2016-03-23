@@ -6,7 +6,7 @@ var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
 var COL_TEMPLATE = '<input class="${cls}" value="${val}">';
 var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
-var DEAFULT_MATRIX = [['','',''], ['','',''], ['','','']];
+var DEAFULT_MATRIX = [['',''], ['','']];
 
 function MatrixViewModel(matrixElement) {
     this.element = matrixElement;
@@ -50,16 +50,20 @@ MatrixViewModel.prototype.fill = function(matrix) {
 
 MatrixViewModel.prototype.addCol = function() {
     var len_j = this.getRows().length;
-    for (var j = 0; j < len_j; j++){
-        var row = this.element.querySelector('.row_' + j);
-        var inputs = row.querySelectorAll('input');
-        var len_i = inputs.length;
-        var eli = COL_TEMPLATE.replace(
-            '${cls}' ,
-            'matrix-item__num el_' + j + '_' + len_i
-        );
-        var el = eli.replace('${val}' , '');
-        row.insertAdjacentHTML('beforeend', el);
+    var row_i = this.element.querySelector('.row_0');
+    var inputs_i = row_i.querySelectorAll('input').length;
+    if (inputs_i < 10){
+        for (var j = 0; j < len_j; j++){
+            var row = this.element.querySelector('.row_' + j);
+            var inputs = row.querySelectorAll('input');
+            var len_i = inputs.length;
+            var eli = COL_TEMPLATE.replace(
+                '${cls}' ,
+                'matrix-item__num el_' + j + '_' + len_i
+            );
+            var el = eli.replace('${val}' , '');
+            row.insertAdjacentHTML('beforeend', el);
+        }
     }
 };
 
@@ -69,21 +73,23 @@ MatrixViewModel.prototype.addRow = function() {
     var row = this.element.querySelector('.row_0');
     var inputs = row.querySelectorAll('input');
     var len_i = inputs.length;
-    for (var i = 0; i < len_i; i++){
-        var eli = COL_TEMPLATE.replace(
-             '${cls}' ,
-             'matrix-item__num el_' + len_j + '_' + i
-         );
-        var el = eli.replace('${val}' , '');
-        columns[i] = el;
-    }
-    var colString = columns.join('\n');
-    var rowi = ROW_TEMPLATE.replace(
-        '${rcls}', 'row row_' + len_j
-    );
-    var row = rowi.replace('${data}', colString);
+    if (len_j < 10){
+        for (var i = 0; i < len_i; i++){
+            var eli = COL_TEMPLATE.replace(
+                 '${cls}' ,
+                 'matrix-item__num el_' + len_j + '_' + i
+             );
+            var el = eli.replace('${val}' , '');
+            columns[i] = el;
+        }
+        var colString = columns.join('\n');
+        var rowi = ROW_TEMPLATE.replace(
+            '${rcls}', 'row row_' + len_j
+        );
+        var row = rowi.replace('${data}', colString);
 
-    this.element.insertAdjacentHTML('beforeend', row);
+        this.element.insertAdjacentHTML('beforeend', row);
+    }
 };
 
 MatrixViewModel.prototype.delCol = function(){
@@ -91,23 +97,27 @@ MatrixViewModel.prototype.delCol = function(){
     var row = this.element.querySelector('.row');
     var inputs = row.querySelectorAll('input');
     var len_i = inputs.length;
-    if (len_i - 1 !== 0){
+    if (len_i !== 2){
         for (var j = 0; j < len_j; j++){
             var row = this.element.querySelector('.row_' + j);
             var inputs = row.querySelectorAll('input');
             var len_i = inputs.length - 1;
             var className = '.' + 'el_' + j + '_' + len_i;
-            row.querySelector(className).remove();
+            //row.querySelector(className).remove();
+            var input_d = row.querySelector(className);
+            input_d.parentNode.removeChild(input_d);
         }
     }
 };
 
 MatrixViewModel.prototype.delRow = function(){
     var len_j = this.getRows().length;
-    if (len_j - 1 !== 0){
-        this.element.querySelector(
-            '.row_' + (len_j - 1)
-        ).remove();
+    if (len_j !== 2){
+        var row_d = this.element.querySelector('.row_' + (len_j - 1));
+        row_d.parentNode.removeChild(row_d);
+        // this.element.querySelector(
+        //     '.row_' + (len_j - 1)
+        // ).remove();
     }
 };
 

@@ -19,7 +19,7 @@ body
     position:absolute;
     top: 0;
     left: 0;
-    width: 335px;
+    width: 345px;
     height: 100%;
 }
 /*
@@ -111,35 +111,23 @@ body
 {
     position:absolute;
     display: inline-block;
-    left: 365px;
+    left: 375px;
     font-size: 0;
 }
 .matrix-conteiner
 {
     display: inline-block;
     padding: 15px 30px 15px 0;
-    line-height: 1;
+    line-height: 20px;
 }
 
-.matrix-conteiner--C
-{
-}
-
-.matrix-conteiner--A
-{
-
-}
-
-.matrix-conteiner--B
-{
-
-}
 
 .matrix-item__num
 {
     line-height: 40px;
     width:40px;
     margin: 5px;
+    
 }
 
 .matrix

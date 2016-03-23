@@ -14,15 +14,27 @@ function AppViewModel() {
 AppViewModel.prototype.init = function() {
     var elementA = document.querySelector('.matrix--A');
     this.matrixA = new MatrixViewModel(elementA);
-    this.matrixA.fill([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+    this.matrixA.fill();
 
     var elementB = document.querySelector('.matrix--B');
     this.matrixB = new MatrixViewModel(elementB);
-    this.matrixB.fill([[1, 1, 5], [4, 1, 6], [1, 8, 9]]);
+    this.matrixB.fill();
 
     var elementC = document.querySelector('.matrix--C');
     this.matrixC = new MatrixViewModel(elementC);
     this.matrixC.fill();
+
+    this.changeCurrentActiveMatrix('matrixA');
+};
+AppViewModel.prototype.init_chng = function() {
+    var elementA = document.querySelector('.matrix--A');
+    this.matrixA = new MatrixViewModel(elementA);
+
+    var elementB = document.querySelector('.matrix--B');
+    this.matrixB = new MatrixViewModel(elementB);
+
+    var elementC = document.querySelector('.matrix--C');
+    this.matrixC = new MatrixViewModel(elementC);
 
     this.changeCurrentActiveMatrix('matrixA');
 };
@@ -50,10 +62,11 @@ AppViewModel.prototype.btnClearMatrix = function() {
     this.matrixA.cleanMatrix();
     this.matrixB.cleanMatrix();
     this.matrixC.cleanMatrix();
-}
+};
 
-MatrixViewModel.btn_change_Matrix = function() {
+AppViewModel.btn_change_Matrix = function() {
     MatrixViewModel.change_Matrix();
+    AppViewModel.init();
 };
 
 window.AppViewModel = AppViewModel;
