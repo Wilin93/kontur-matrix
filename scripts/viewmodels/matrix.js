@@ -2,6 +2,7 @@
 'use strict';
 
 var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
+
 var COL_TEMPLATE = '<input class="${cls}" value="${val}">';
 var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
@@ -146,7 +147,6 @@ MatrixViewModel.multMatrix = function(A, B) {
     if (lena.length !== lenb.length) {
         window.alert ('количество столбцов А должно быть равно кол-ву строк В');
         return false;
-        d.backgroundColor = 'f6c1c0';
     };
     for (var i = 0; i < A.length; i++) {
         matrix[i] = [];
@@ -180,6 +180,22 @@ MatrixViewModel.prototype.cleanMatrix = function() {
         }
     }
 }
+
+MatrixViewModel.change_Matrix = function() {
+    // var b1 = document.querySelector('#blck_mat_A');
+    // var b2 = document.querySelector('#blck_mat_A');
+
+    var d1=document.getElementById("blck_mat_A");
+    var d2=document.getElementById("blck_mat_B");
+    var d11=d1.cloneNode(true);
+    var d22=d2.cloneNode(true);
+    d2.parentNode.appendChild(d22);
+    d1.parentNode.appendChild(d11);
+    d1.parentNode.removeChild(d1);
+    d2.parentNode.removeChild(d2);
+};
+
+
 
 window.MatrixViewModel = MatrixViewModel;
 

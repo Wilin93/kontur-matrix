@@ -39,13 +39,9 @@ AppViewModel.prototype.changeCurrentActiveMatrixHandler = function(radio) {
 AppViewModel.prototype.btnMultMatrixHandler = function() {
     this.matrixA.read();
     var A = this.matrixA.read();
-    console.log (A);
     this.matrixB.read();
     var B = this.matrixB.read();
-    console.log (B);
-    MatrixViewModel.multMatrix(A,B);
-    var d = document.querySelector('.matrix-menu');
-    d.backgroundColor = 'green';
+    //MatrixViewModel.multMatrix(A,B);
     var C = MatrixViewModel.multMatrix(A,B);
     this.matrixC.fill(C);
 };
@@ -55,6 +51,10 @@ AppViewModel.prototype.btnClearMatrix = function() {
     this.matrixB.cleanMatrix();
     this.matrixC.cleanMatrix();
 }
+
+MatrixViewModel.btn_change_Matrix = function() {
+    MatrixViewModel.change_Matrix();
+};
 
 window.AppViewModel = AppViewModel;
 

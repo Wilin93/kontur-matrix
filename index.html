@@ -18,7 +18,7 @@
         </div>
         <div class="matrix-menu__block">
             <button id="btn_2" class="matrix-menu__btn" onclick="app.btnClearMatrix()"><b>&#8630;</b> Очистить матрицы</button>
-            <br><button id="btn_3" class="matrix-menu__btn"><b>&#8645;</b> Поменять матрицы местами</button>
+            <br><button id="btn_3" class="matrix-menu__btn" onclick="MatrixViewModel.change_Matrix()"><b>&#8645;</b> Поменять матрицы местами</button>
         </div>
 
         <div class="matrix-menu__block">
@@ -49,11 +49,11 @@
         <div class="matrix-conteiner matrix-conteiner--C">
             <div id="blck_C" class="matrix matrix--C"></div>
         </div>
-        <div class="matrix-conteiner matrix-conteiner--A">
+        <div id="blck_mat_A" class="matrix-conteiner matrix-conteiner--A">
             <div id="blck_A" class="matrix matrix--A"></div>
             <div class="matrix-title">A</div>
         </div>
-        <br><div class="matrix-conteiner matrix-conteiner--B">
+        <div id="blck_mat_B" class="matrix-conteiner matrix-conteiner--B">
             <div id="blck_B" class="matrix matrix--B"></div>
             <div class="matrix-title">B</div>
         </div>
