@@ -12,12 +12,39 @@
         var assert = chai.assert;
         var expect = chai.expect;
     </script>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/index.js"></script>;
 </head>
 
 <body>
 
-<script src="tests/test.js"></script>
+<script>
+multMatrix = function(A, B) {
+var matrix = [];
+if (A[0].length !== B.length) {
+    return false;
+};
+for (var i = 0; i < A.length; i++) {
+    matrix[i] = [];
+};
+for (var k = 0; k < B[0].length; k++) {
+    for (var i = 0; i < A.length; i++) {
+        var t = 0;
+        for (var j = 0; j < B.length; j++) {
+            if (A[i][j] === ''){
+                A[i][j] = 0;
+            };
+            if (B[j][k] === ''){
+                B[j][k] = 0;
+            };
+            t = t + A[i][j] * B[j][k];
+            matrix[i][k] = t;
+        }
+    }
+};
+return matrix;
+};
+</script>;
+<script src="tests/test.js"></script>;
 
 <div id="mocha"></div>
 
