@@ -56,7 +56,7 @@ body
     line-height: 20px;
 }
 
-.matrix-menu__btn--result
+/*.matrix-menu__btn--result
 {
     display: inline-block;
     border: 1px solid black;
@@ -67,7 +67,7 @@ body
     color: white;
     font:14px "Segoe UI";
     line-height: 20px;
-}
+}*/
 
 .matrix-menu__title
 {
@@ -82,11 +82,11 @@ body
     background: linear-gradient(to bottom, #f2f2f2, #dfdfdf);
 }
 
-.matrix-menu__btn--result:hover
+/*.matrix-menu__btn--result:hover
 {
     background: #317f0b;
     background: linear-gradient(to bottom, #3b8d13, #317f0b);
-}
+}*/
 
 .matrix-menu__btn:active
 {
@@ -94,14 +94,14 @@ body
     border: 1px solid black;
 }
 
-.matrix-menu__btn--result:active
+/*.matrix-menu__btn--result:active
 {
     background: #30760d;
     border: 1px solid black;
-}
+}*/
 
-.matrix-menu__btn:focus,
-.matrix-menu__btn--result:focus
+.matrix-menu__btn:focus
+/*.matrix-menu__btn--result:focus*/
 {
     border:1px solid #5199db;
 }
@@ -133,10 +133,13 @@ body
 .matrix
 {
     display: inline-block;
-    border: 1px solid black;
+    border-radius: 5px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
     font-size: 0px;
     vertical-align: middle;
 }
+
 
 .matrix-title
 {
@@ -144,4 +147,73 @@ body
     font-size: 20px;
     padding-left: 20px;
     vertical-align: middle;
+}
+
+.matrix-menu__btn--result
+{
+display: inline-block;
+    border: 1px solid black;
+    background-color: #f2f2f2;
+    background: #4ba91d;
+    padding: 10px 20px;
+    border-radius: 0em;
+     Обнулить округлости
+  -moz-border-radius: 0em; Обнулить округлости
+  -webkit-border-radius: 0em; Обнулить округлости
+    color: white;
+    font:14px "Segoe UI";
+    line-height: 20px;
+    position: relative;
+}
+
+.matrix-menu__btn--result:after,
+.matrix-menu__btn--result:before {
+	left: 100%;
+	top: 37%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 1px;
+	position: absolute;
+}
+.matrix-menu__btn--result:after {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #4ba91d;
+	border-width: 22px;
+	margin-top: -16px;
+}
+ .matrix-menu__btn--result:before {
+border-color: rgba(194, 225, 245, 0);
+	border-left-color: black;
+	border-width: 23px;
+	margin-top: -17px;
+}
+.matrix-menu__btn--result:hover
+{
+    background: #3b8d13;
+
+}
+.matrix-menu__btn--result:active
+{
+    background: #30760d;
+    border: 1px solid black;
+}
+
+.matrix-menu__btn--result:focus
+{
+    border:1px solid #5199db;
+}
+
+.matrix-menu__btn--result:focus:after{
+  border-left-color: #4ba91d;
+}
+.matrix-menu__btn--result:focus:before{
+  border-left-color: #5199db;
+}
+.matrix-menu__btn--result:hover:after{
+  border-left-color: #3b8d13;
+}
+.matrix-menu__btn--result:active:after
+{
+  border-left-color: #30760d;
 }
