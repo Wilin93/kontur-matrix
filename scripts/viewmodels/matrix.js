@@ -3,7 +3,7 @@
 
 var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
 
-var COL_TEMPLATE = '<input class="${cls}" value="${val}">';
+var COL_TEMPLATE = '<input oninput="inp_change()"  class="${cls}" value="${val}">';
 var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
 var DEAFULT_MATRIX = [['',''], ['','']];

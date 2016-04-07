@@ -13,4 +13,9 @@ function btn_change() {
     app.init_chng();
 }
 
+function inp_change() {
+    var bg = document.querySelector('.matrix-menu');
+    bg.style.background = '#5199db';
+}
+
 main();
