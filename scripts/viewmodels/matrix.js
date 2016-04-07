@@ -137,8 +137,8 @@ MatrixViewModel.prototype.read = function() {
                 mx[j][i] = parseInt(item.value);
             }
             else {
-                item.value = 0;
-                mx[j][i] = parseInt(item.value);
+                item.value = '0';
+                mx[j][i] = '';
             }
         }
     }
@@ -149,12 +149,8 @@ MatrixViewModel.prototype.read = function() {
 
 MatrixViewModel.multMatrix = function(A, B) {
     var matrix = [];
-    var lenb = blck_B.querySelectorAll('.row');
-    var row = blck_A.querySelector('.row');
-    var lena = row.querySelectorAll('input');
-    var inp_a = blck_A.querySelectorAll('input');
 
-    if (lena.length !== lenb.length) {
+    if (A[0].length !== B.length) {
         window.alert ('количество столбцов А должно быть равно кол-ву строк В');
         return false;
     };
@@ -165,7 +161,12 @@ MatrixViewModel.multMatrix = function(A, B) {
         for (var i = 0; i < A.length; i++) {
             var t = 0;
             for (var j = 0; j < B.length; j++) {
-
+                if (A[i][j] === ''){
+                    A[i][j] = 0;
+                };
+                if (B[j][k] === ''){
+                    B[j][k] = 0;
+                };
                 t = t + A[i][j] * B[j][k];
                 matrix[i][k] = t;
             }
