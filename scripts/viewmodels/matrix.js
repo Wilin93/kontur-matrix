@@ -149,9 +149,18 @@ MatrixViewModel.prototype.read = function() {
 
 MatrixViewModel.multMatrix = function(A, B) {
     var matrix = [];
-
+    var bg = document.querySelector('.matrix-menu');
+    var er = document.querySelector('#error_1');
     if (A[0].length !== B.length) {
-        window.alert ('количество столбцов А должно быть равно кол-ву строк В');
+        // window.alert ('количество столбцов А должно быть равно кол-ву строк В');
+
+        if (er === null){
+            var BLOCK_TEMPLATE = '<div id="error_1" class="matrix-menu__block">Kоличество столбцов А должно быть равно кол-ву строк В</div>';
+
+            bg.style.background = '#f6c1c0';
+            bg.insertAdjacentHTML('beforeend', BLOCK_TEMPLATE);
+        }
+
         return false;
     };
     for (var i = 0; i < A.length; i++) {
@@ -172,6 +181,11 @@ MatrixViewModel.multMatrix = function(A, B) {
             }
         }
     };
+    if (er !== null){
+
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
     return matrix;
 };
 

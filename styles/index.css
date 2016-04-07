@@ -127,7 +127,7 @@ body
     line-height: 40px;
     width:40px;
     margin: 5px;
-    
+    height: 40px;
 }
 
 .matrix
@@ -164,6 +164,7 @@ display: inline-block;
     font:14px "Segoe UI";
     line-height: 20px;
     position: relative;
+    outline: 0;
 }
 
 .matrix-menu__btn--result:after,
