@@ -22,7 +22,8 @@ AppViewModel.prototype.init = function() {
 
     var elementC = document.querySelector('.matrix--C');
     this.matrixC = new MatrixViewModel(elementC);
-    this.matrixC.fill();
+    var dis = 'disabled'
+    this.matrixC.fill(dis);
 
     this.changeCurrentActiveMatrix('matrixA');
 };
@@ -55,7 +56,9 @@ AppViewModel.prototype.btnMultMatrixHandler = function() {
     var B = this.matrixB.read();
     //MatrixViewModel.multMatrix(A,B);
     var C = MatrixViewModel.multMatrix(A,B);
-    this.matrixC.fill(C);
+    var dis = 'disabled';
+    this.matrixC.fill(dis,C);
+    MatrixViewModel.matrDis();
 };
 
 AppViewModel.prototype.btnClearMatrix = function() {

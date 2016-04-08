@@ -56,19 +56,6 @@ body
     line-height: 20px;
 }
 
-/*.matrix-menu__btn--result
-{
-    display: inline-block;
-    border: 1px solid black;
-    background-color: #f2f2f2;
-    background: linear-gradient(to bottom, #4ba91d, #38920c);
-    padding: 10px 20px;
-    border-radius: 2px;
-    color: white;
-    font:14px "Segoe UI";
-    line-height: 20px;
-}*/
-
 .matrix-menu__title
 {
     display: inline-block;
@@ -82,11 +69,6 @@ body
     background: linear-gradient(to bottom, #f2f2f2, #dfdfdf);
 }
 
-/*.matrix-menu__btn--result:hover
-{
-    background: #317f0b;
-    background: linear-gradient(to bottom, #3b8d13, #317f0b);
-}*/
 
 .matrix-menu__btn:active
 {
@@ -94,14 +76,7 @@ body
     border: 1px solid black;
 }
 
-/*.matrix-menu__btn--result:active
-{
-    background: #30760d;
-    border: 1px solid black;
-}*/
-
 .matrix-menu__btn:focus
-/*.matrix-menu__btn--result:focus*/
 {
     border:1px solid #5199db;
 }
@@ -121,6 +96,9 @@ body
     line-height: 20px;
 }
 
+.matrix--C{
+    enabeled: disabled;
+}
 
 .matrix-item__num
 {

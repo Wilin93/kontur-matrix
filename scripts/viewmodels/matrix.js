@@ -3,10 +3,11 @@
 
 var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
 
-var COL_TEMPLATE = '<input oninput="inp_change()"  class="${cls}" value="${val}">';
+var COL_TEMPLATE = '<input oninput="inp_change()"  class="${cls}" value="${val}" enabled>';
 var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
 var DEAFULT_MATRIX = [['',''], ['','']];
+var bg = document.querySelector('.matrix-menu');
 
 function MatrixViewModel(matrixElement) {
     this.element = matrixElement;
@@ -16,9 +17,12 @@ MatrixViewModel.prototype.getRows = function() {
     return this.element.querySelectorAll('.row');
 };
 
-MatrixViewModel.prototype.fill = function(matrix) {
+MatrixViewModel.prototype.fill = function(dismtrx, matrix) {
     if (!matrix) {
         matrix = DEAFULT_MATRIX;
+    }
+    if (!dismtrx) {
+        dismtrx = 'enabled';
     }
     var colLen = matrix[0].length;
     var rowLen = matrix.length;
@@ -29,12 +33,14 @@ MatrixViewModel.prototype.fill = function(matrix) {
             var eli = COL_TEMPLATE.replace(
                 '${cls}' ,
                 'matrix-item__num el_' + j + '_' + i
+
             );
+            var elj =eli.replace('enabled', dismtrx);
             var value = matrix[j][i];
             if (value === null) {
                 value = '';
             }
-            var el = eli.replace('${val}', value);
+            var el = elj.replace('${val}', value);
             columns[i] = el;
         }
         var colString = columns.join('\n');
@@ -48,10 +54,43 @@ MatrixViewModel.prototype.fill = function(matrix) {
     this.element.innerHTML = rowsListString;
 };
 
+MatrixViewModel.matrDis = function() {
+    var blc = document.querySelector('#blck_C');
+    console.log ('blc: ' + blc);
+    var str = blc.querySelectorAll('input');
+    console.log ('str: ' + str);
+    // str.replace('enabled', 'disabled');
+
+    // var row = blc.querySelector('.row');
+    // console.log ('row: ' + row);
+    // var len_j = blc.querySelectorAll('.row').length;
+    // console.log ('len_j: ' + len_j);
+    // var inputs = row.querySelectorAll('input');
+    // console.log ('inputs: ' + inputs);
+    // var len_i = inputs.length;
+    // console.log ('len_i: ' + len_i);
+    // for (var j = 0; j < len_j; j++) {
+    //     for (var i = 0; i < len_i; i++) {
+    //         var className = '.' + 'el_' + j + '_' + i;
+    //         var row = blc.querySelector('.row_' + j);
+    //         var item = row.querySelector(className);
+    //         console.log (item);
+    //         var rezlt = str.replace('enabled', 'disabled');
+    //         console.log (rezlt);
+    //         document.write(rezlt);
+    //     }
+    // }
+};
+
 MatrixViewModel.prototype.addCol = function() {
     var len_j = this.getRows().length;
     var row_i = this.element.querySelector('.row_0');
     var inputs_i = row_i.querySelectorAll('input').length;
+    var er = document.querySelector('#error_1');
+    if (er !== null){
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
     if (inputs_i < 10){
         for (var j = 0; j < len_j; j++){
             var row = this.element.querySelector('.row_' + j);
@@ -73,6 +112,11 @@ MatrixViewModel.prototype.addRow = function() {
     var row = this.element.querySelector('.row_0');
     var inputs = row.querySelectorAll('input');
     var len_i = inputs.length;
+    var er = document.querySelector('#error_1');
+    if (er !== null){
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
     if (len_j < 10){
         for (var i = 0; i < len_i; i++){
             var eli = COL_TEMPLATE.replace(
@@ -97,6 +141,11 @@ MatrixViewModel.prototype.delCol = function(){
     var row = this.element.querySelector('.row');
     var inputs = row.querySelectorAll('input');
     var len_i = inputs.length;
+    var er = document.querySelector('#error_1');
+    if (er !== null){
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
     if (len_i !== 2){
         for (var j = 0; j < len_j; j++){
             var row = this.element.querySelector('.row_' + j);
@@ -112,6 +161,11 @@ MatrixViewModel.prototype.delCol = function(){
 
 MatrixViewModel.prototype.delRow = function(){
     var len_j = this.getRows().length;
+    var er = document.querySelector('#error_1');
+    if (er !== null){
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
     if (len_j !== 2){
         var row_d = this.element.querySelector('.row_' + (len_j - 1));
         row_d.parentNode.removeChild(row_d);
@@ -149,7 +203,7 @@ MatrixViewModel.prototype.read = function() {
 
 MatrixViewModel.multMatrix = function(A, B) {
     var matrix = [];
-    var bg = document.querySelector('.matrix-menu');
+
     var er = document.querySelector('#error_1');
     if (A[0].length !== B.length) {
         // window.alert ('количество столбцов А должно быть равно кол-ву строк В');
@@ -194,6 +248,11 @@ MatrixViewModel.prototype.cleanMatrix = function() {
     var row = this.element.querySelector('.row');
     var inputs = row.querySelectorAll('input');
     var len_i = inputs.length;
+    var er = document.querySelector('#error_1');
+    if (er !== null){
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
     for (var j = 0; j < len_j; j++) {
         for (var i = 0; i < len_i; i++) {
             var className = '.' + 'el_' + j + '_' + i;
@@ -218,6 +277,11 @@ MatrixViewModel.change_Matrix = function() {
     d1.parentNode.insertBefore(d22,d1);
     d1.parentNode.removeChild(d1);
     d2.parentNode.removeChild(d2);
+    var er = document.querySelector('#error_1');
+    if (er !== null){
+        er.parentNode.removeChild(er);
+    }
+    bg.style.background = '#bcbcbc';
 };
 
 
