@@ -2,7 +2,6 @@
 'use strict';
 
 var ROW_TEMPLATE = '<div class="${rcls}">${data}</div>';
-
 var COL_TEMPLATE = '<input oninput="inp_change()"  class="${cls}" value="${val}" enabled>';
 var ROW_CLASS_TEMPLATE = 'row row_';
 var COL_CLASS_TEMPLATE = 'matrix-item__num';
@@ -33,7 +32,6 @@ MatrixViewModel.prototype.fill = function(dismtrx, matrix) {
             var eli = COL_TEMPLATE.replace(
                 '${cls}' ,
                 'matrix-item__num el_' + j + '_' + i
-
             );
             var elj =eli.replace('enabled', dismtrx);
             var value = matrix[j][i];
@@ -52,34 +50,6 @@ MatrixViewModel.prototype.fill = function(dismtrx, matrix) {
     }
     var rowsListString = rowsList.join('\n');
     this.element.innerHTML = rowsListString;
-};
-
-MatrixViewModel.matrDis = function() {
-    var blc = document.querySelector('#blck_C');
-    console.log ('blc: ' + blc);
-    var str = blc.querySelectorAll('input');
-    console.log ('str: ' + str);
-    // str.replace('enabled', 'disabled');
-
-    // var row = blc.querySelector('.row');
-    // console.log ('row: ' + row);
-    // var len_j = blc.querySelectorAll('.row').length;
-    // console.log ('len_j: ' + len_j);
-    // var inputs = row.querySelectorAll('input');
-    // console.log ('inputs: ' + inputs);
-    // var len_i = inputs.length;
-    // console.log ('len_i: ' + len_i);
-    // for (var j = 0; j < len_j; j++) {
-    //     for (var i = 0; i < len_i; i++) {
-    //         var className = '.' + 'el_' + j + '_' + i;
-    //         var row = blc.querySelector('.row_' + j);
-    //         var item = row.querySelector(className);
-    //         console.log (item);
-    //         var rezlt = str.replace('enabled', 'disabled');
-    //         console.log (rezlt);
-    //         document.write(rezlt);
-    //     }
-    // }
 };
 
 MatrixViewModel.prototype.addCol = function() {
@@ -131,7 +101,6 @@ MatrixViewModel.prototype.addRow = function() {
             '${rcls}', 'row row_' + len_j
         );
         var row = rowi.replace('${data}', colString);
-
         this.element.insertAdjacentHTML('beforeend', row);
     }
 };
@@ -152,7 +121,6 @@ MatrixViewModel.prototype.delCol = function(){
             var inputs = row.querySelectorAll('input');
             var len_i = inputs.length - 1;
             var className = '.' + 'el_' + j + '_' + len_i;
-            //row.querySelector(className).remove();
             var input_d = row.querySelector(className);
             input_d.parentNode.removeChild(input_d);
         }
@@ -169,9 +137,6 @@ MatrixViewModel.prototype.delRow = function(){
     if (len_j !== 2){
         var row_d = this.element.querySelector('.row_' + (len_j - 1));
         row_d.parentNode.removeChild(row_d);
-        // this.element.querySelector(
-        //     '.row_' + (len_j - 1)
-        // ).remove();
     }
 };
 
@@ -196,25 +161,18 @@ MatrixViewModel.prototype.read = function() {
             }
         }
     }
-
     return mx;
-
 };
 
 MatrixViewModel.multMatrix = function(A, B) {
     var matrix = [];
-
     var er = document.querySelector('#error_1');
     if (A[0].length !== B.length) {
-        // window.alert ('количество столбцов А должно быть равно кол-ву строк В');
-
         if (er === null){
             var BLOCK_TEMPLATE = '<div id="error_1" class="matrix-menu__block">Kоличество столбцов А должно быть равно кол-ву строк В</div>';
-
             bg.style.background = '#f6c1c0';
             bg.insertAdjacentHTML('beforeend', BLOCK_TEMPLATE);
         }
-
         return false;
     };
     for (var i = 0; i < A.length; i++) {
@@ -236,7 +194,6 @@ MatrixViewModel.multMatrix = function(A, B) {
         }
     };
     if (er !== null){
-
         er.parentNode.removeChild(er);
     }
     bg.style.background = '#bcbcbc';
@@ -266,9 +223,6 @@ MatrixViewModel.prototype.cleanMatrix = function() {
 }
 
 MatrixViewModel.change_Matrix = function() {
-    // var b1 = document.querySelector('#blck_mat_A');
-    // var b2 = document.querySelector('#blck_mat_A');
-
     var d1=document.getElementById("blck_mat_A");
     var d2=document.getElementById("blck_mat_B");
     var d11=d1.cloneNode(true);

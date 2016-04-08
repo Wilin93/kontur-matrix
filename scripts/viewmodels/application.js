@@ -51,14 +51,13 @@ AppViewModel.prototype.changeCurrentActiveMatrixHandler = function(radio) {
 };
 AppViewModel.prototype.btnMultMatrixHandler = function() {
     this.matrixA.read();
-    var A = this.matrixA.read();
+    var a = this.matrixA.read();
     this.matrixB.read();
-    var B = this.matrixB.read();
-    //MatrixViewModel.multMatrix(A,B);
-    var C = MatrixViewModel.multMatrix(A,B);
+    var b = this.matrixB.read();
+    var c = MatrixViewModel.multMatrix(a,b);
     var dis = 'disabled';
-    this.matrixC.fill(dis,C);
-    MatrixViewModel.matrDis();
+    this.matrixC.fill(dis,c);
+
 };
 
 AppViewModel.prototype.btnClearMatrix = function() {

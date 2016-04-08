@@ -9,10 +9,6 @@ body
     margin: 0;
 }
 
-.page{
-
-}
-
 .matrix-menu
 {
     display: inline-block;
@@ -22,16 +18,7 @@ body
     width: 345px;
     height: 100%;
 }
-/*
-.matrix-menu--active
-{
-    background: #5199db;
-}
-.matrix-menu--error
-{
-    background: #f6c1c0;
-}
-*/
+
 .matrix-menu--passive
 {
     background: #bcbcbc;
@@ -69,7 +56,6 @@ body
     background: linear-gradient(to bottom, #f2f2f2, #dfdfdf);
 }
 
-
 .matrix-menu__btn:active
 {
     background: #d9d9d9;
@@ -81,7 +67,6 @@ body
     border:1px solid #5199db;
 }
 
-
 .matrix-list
 {
     position:absolute;
@@ -89,15 +74,12 @@ body
     left: 375px;
     font-size: 0;
 }
+
 .matrix-conteiner
 {
     display: inline-block;
     padding: 15px 30px 15px 0;
     line-height: 20px;
-}
-
-.matrix--C{
-    enabeled: disabled;
 }
 
 .matrix-item__num
